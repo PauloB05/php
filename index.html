@@ -6,29 +6,21 @@
 </head>
 
 <body>
-
-  <form method="post" action="pagina2.php">
-    Nombre:
-    <input type="text" name="nombre" size="30">
+  <h1>Alta de Alumnos</h1>
+  <form action="pagina2.php" method="post">
+    Ingrese nombre:
+    <input type="text" name="nombre"><br>
+    Ingrese mail:
+    <input type="text" name="mail"><br>
+    Seleccione el curso:
+    <select name="codigocurso">
+      <option value="1">PHP</option>
+      <option value="2">ASP</option>
+      <option value="3">JSP</option>
+    </select>
     <br>
-    Dirección:
-    <input type="text" name="direccion" size="40">
-    <br>
-    Jamon y Queso:
-    <input type="checkbox" name="jamonqueso">
-    <input type="text" name="cantjamonqueso" size="3">
-    <br>
-    Napolitana:
-    <input type="checkbox" name="napolitana">
-    <input type="text" name="cantnapolitana" size="3">
-    <br>
-    Muzzarella:
-    <input type="checkbox" name="muzzarella">
-    <input type="text" name="cantmuzzarella" size="3">
-    <br>
-    <input type="submit" value="Confirmar">
+    <input type="submit" value="Registrar">
   </form>
-
 </body>
 
 </html>

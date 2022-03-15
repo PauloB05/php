@@ -7,36 +7,21 @@
 <body>
 
   <?php
-  $ar = fopen("datos.txt", "a") or
-    die("Problemas en la creacion");
-  fputs($ar, "Nombre:");
-  fputs($ar, $_REQUEST["nombre"]);
-  fputs($ar, "\n");
-  fputs($ar, "Dirección:");
-  fputs($ar, $_REQUEST['direccion']);
-  fputs($ar, "\n");
-  if (isset($_REQUEST['jamonqueso'])) {
-    fputs($ar, "Cantidad de Jamón y Queso:");
-    fputs($ar, $_REQUEST['cantjamonqueso']);
-    fputs($ar, "\n");
-  }
-  if (isset($_REQUEST['napolitana'])) {
-    fputs($ar, "Cantidad de Napolitana:");
-    fputs($ar, $_REQUEST['cantnapolitana']);
-    fputs($ar, "\n");
-  }
-  if (isset($_REQUEST['muzzarella'])) {
-    fputs($ar, "Cantidad de Muzzarella:");
-    fputs($ar, $_REQUEST['cantmuzzarella']);
-    fputs($ar, "\n");
-  }
+  $conexion = mysqli_connect("localhost", "root", "secure_pass_here", "base1") or
+    die("Problemas con la conexión");
 
-  fputs($ar, "--------------------------------------------------------");
-  fputs($ar, "\n");
-  fclose($ar);
-  echo "El pedido se cargó correctamente.";
-  ?>
-
+    $registros = mysqli_query($conexion, "select codigo from alumnos
+    where mail='$_REQUEST[mail]'") or
+die("Problemas en el select:" . mysqli_error($conexion));
+if ($reg = mysqli_fetch_array($registros)) {
+mysqli_query($conexion, "delete from alumnos where mail='$_REQUEST[mail]'") or
+die("Problemas en el select:" . mysqli_error($conexion));
+echo "Se efectuó el borrado del alumno con dicho mail.";
+} else {
+echo "No existe un alumno con ese mail.";
+}
+mysqli_close($conexion);
+?>
 </body>
 
 </html>
