@@ -10,17 +10,13 @@
   $conexion = mysqli_connect("localhost", "root", "secure_pass_here", "base1") or
     die("Problemas con la conexión");
 
-    $registros = mysqli_query($conexion, "select codigo from alumnos
-    where mail='$_REQUEST[mail]'") or
-die("Problemas en el select:" . mysqli_error($conexion));
-if ($reg = mysqli_fetch_array($registros)) {
-mysqli_query($conexion, "delete from alumnos where mail='$_REQUEST[mail]'") or
-die("Problemas en el select:" . mysqli_error($conexion));
-echo "Se efectuó el borrado del alumno con dicho mail.";
-} else {
-echo "No existe un alumno con ese mail.";
-}
+    mysqli_query($conexion, "insert into alumnos(nombre,mail,codigocurso) values 
+    ('$_REQUEST[nombre]','$_REQUEST[mail]',$_REQUEST[codigocurso])")
+or die("Problemas en el select" . mysqli_error($conexion));
+
 mysqli_close($conexion);
+
+echo "El alumno fue dado de alta.";
 ?>
 </body>
 
